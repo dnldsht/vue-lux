@@ -1,0 +1,7 @@
+{
+  "eslint.format.enable": true,
+  "eslint.quiet": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}

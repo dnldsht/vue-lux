@@ -1,0 +1,54 @@
+{
+  "name": "vue-luxon-next",
+  "type": "module",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Easy DateTime formatting & parsing in Vue using Luxon",
+  "author": "Donald Shtjefni <dnld.sht@gmail.com>",
+  "license": "MIT",
+  "repository": "git@github.com:dnldsht/v-luxon.git",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "luxon",
+    "date",
+    "datetime",
+    "time",
+    "format",
+    "parse"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "test": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "defu": "^6.1.2",
+    "luxon": "^3.3.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.6.0",
+    "@types/luxon": "^3.3.0",
+    "@vitest/ui": "^2.1.0",
+    "eslint": "^9.10.0",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.3",
+    "unbuild": "^1.2.1",
+    "vitest": "^2.1.0",
+    "vue": "^3.3.4"
+  }
+}
