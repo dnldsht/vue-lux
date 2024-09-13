@@ -1,4 +1,5 @@
 import type { LuxonOptions } from '../src/types'
+import { DateTime } from 'luxon'
 import { describe, expect, it } from 'vitest'
 import { createApp } from 'vue'
 import plugin from '../src/index'
@@ -20,7 +21,7 @@ describe('plugin', () => {
 })
 
 describe('datetimes', () => {
-  it('simple', () => {
+  it('format', () => {
     const app = initApp({
       output: {
         zone: 'utc',
@@ -49,14 +50,26 @@ describe('datetimes', () => {
       { format: 'time24s', expected: '12:23:49' },
       { format: 'time', expected: '12:23 PM' },
       { format: 'times', expected: '12:23:49 PM' },
+      { format: 'iso', expected: '2024-07-12T12:23:49.000Z' },
+      { format: 'sql', expected: '2024-07-12 12:23:49.000 Z' },
+      { format: 'http', expected: 'Fri, 12 Jul 2024 12:23:49 GMT' },
+      { format: 'rfc', expected: 'Fri, 12 Jul 2024 12:23:49 +0000' },
+      { format: 'rfc2822', expected: 'Fri, 12 Jul 2024 12:23:49 +0000' },
+      { format: 'millis', expected: 1720787029000 },
+      { format: 'unix', expected: 1720787029 },
+      { format: 'seconds', expected: 1720787029 },
     ]
 
     for (const { format, expected } of outputs) {
       expect($luxon(date, format), format).toBe(expected)
     }
+
+    expect($luxon(date, 'jsdate').getTime()).toBe(new Date(1720787029 * 1000).getTime())
+    expect($luxon(date, 'relative')).toMatch('ago')
+    expect(() => $luxon(date, { format: 1 })).toThrowError(TypeError)
   })
 
-  it('locale', () => {
+  it('format with locale', () => {
     const app = initApp({
       output: {
         zone: 'utc',
@@ -95,7 +108,7 @@ describe('datetimes', () => {
     }
   })
 
-  it('timezone', () => {
+  it('format with timezones', () => {
     const app = initApp({
       output: {
         zone: 'America/New_York',
@@ -106,7 +119,6 @@ describe('datetimes', () => {
     const date = '2024-07-12T12:23:49.000Z'
     const outputs = [
       { format: undefined, expected: '7/12/2024, 8:23 AM' },
-
       { format: 'full', expected: 'July 12, 2024 at 8:23 AM EDT' },
       { format: 'fulls', expected: 'July 12, 2024 at 8:23:49 AM EDT' },
       { format: 'huge', expected: 'Friday, July 12, 2024 at 8:23 AM Eastern Daylight Time' },
@@ -123,12 +135,17 @@ describe('datetimes', () => {
     ]
 
     for (const { format, expected } of outputs) {
-      // console.log(format, $luxon(date, format),);
       expect($luxon(date, format), format).toMatch(expected)
     }
+
+    const dateIn = '2024-07-12T12:23:49'
+    const zoneIn = 'Asia/Tokyo'
+    const zoneOut = 'Europe/Rome'
+
+    expect($luxon(dateIn, { format: 'huges', zone: zoneOut }, { zone: zoneIn })).toMatch('Friday, July 12, 2024 at 5:23:49 AM Central European Summer Time')
   })
 
-  it('custom templates', () => {
+  it('format with templates', () => {
     const app = initApp({
       templates: {
         date: { format: 'dd/MM/yyyy' },
@@ -141,6 +158,53 @@ describe('datetimes', () => {
 
     for (const { format, expected } of outputs) {
       expect($luxon(date, format)).toBe(expected)
+    }
+  })
+})
+
+describe('parse', () => {
+  it('inputs', () => {
+    const app = initApp({
+      templates: {
+        my_template: { format: 'dd-MM--yyyy' },
+      },
+    })
+    const $lp = app.config.globalProperties.$lp
+
+    const date = '2024-07-12'
+    expect($lp('12/07/2024', 'dd/MM/yyyy').toISODate()).toBe(date)
+    expect($lp('12/07/2024', { format: 'dd/MM/yyyy' }).toISODate()).toBe(date)
+    expect($lp('12-07--2024', { format: 'my_template' }).toISODate()).toBe(date)
+    expect($lp(new Date(2024, 6, 13)).toISODate()).toBe(date)
+    expect($lp(1720742400 * 1000).toISODate()).toBe(date)
+    expect($lp(DateTime.fromObject({ year: 2024, month: 7, day: 13 })).toISODate()).toBe(date)
+
+    const formats = [
+      { format: 'iso', value: '2024-07-12' },
+      { format: 'sql', value: '2024-07-12' },
+      { format: 'http', value: 'Fri, 12 Jul 2024 12:23:49 GMT' },
+      { format: 'rfc2822', value: 'Fri, 12 Jul 2024 12:23:49 +0000' },
+      { format: 'millis', value: 1720787029000 },
+      { format: 'unix', value: 1720787029 },
+      { format: 'seconds', value: 1720787029 },
+      { format: 'luxon', value: DateTime.fromObject({ year: 2024, month: 7, day: 13 }) },
+    ]
+
+    expect(() => $lp('2024-07-12', { format: 'jsdate' })).toThrowError(TypeError)
+    expect(() => $lp(null, { format: 'jsdate' })).toThrowError(TypeError)
+
+    expect(() => $lp('2024-07-12', { format: 'millis' })).toThrowError(TypeError)
+    expect(() => $lp(null, { format: 'millis' })).toThrowError(TypeError)
+
+    expect(() => $lp('2024-07-12', { format: 'seconds' })).toThrowError(TypeError)
+    expect(() => $lp(null, { format: 'seconds' })).toThrowError(TypeError)
+
+    expect(() => $lp('2024-07-12', { format: 0 })).toThrowError(TypeError)
+    expect(() => $lp(0, { format: 'short' })).toThrowError(TypeError)
+    expect(() => $lp(null, { format: 'short' })).toThrowError(TypeError)
+
+    for (const { format, value } of formats) {
+      expect($lp(value, { format }).toISODate(), format).toBe(date)
     }
   })
 })
