@@ -1,6 +1,12 @@
 import type { Zone } from 'luxon'
 import { DateTime } from 'luxon'
 
+interface LuxonParseOptions {
+  value: DateTime
+  format: 'luxon'
+  zone?: string | Zone
+}
+
 interface JsDateParseOptions {
   value: Date
   format: 'jsdate'
@@ -19,7 +25,7 @@ interface StringParseOptions {
   zone?: string | Zone
 }
 
-export type ParseOptions = StringParseOptions | NumberParseOptions | JsDateParseOptions
+export type ParseOptions = StringParseOptions | NumberParseOptions | JsDateParseOptions | LuxonParseOptions
 
 export default function parse(options: ParseOptions): DateTime {
   const { value, format, zone } = options
@@ -36,6 +42,8 @@ export default function parse(options: ParseOptions): DateTime {
         throw new TypeError(`Value must be an instance of Date, received ${value === null ? 'null' : typeof value}`)
       }
       return DateTime.fromJSDate(value, { zone })
+    case 'luxon':
+      return (value as DateTime).setZone(zone)
     case 'rfc2822':
       return DateTime.fromRFC2822(value, { zone })
     case 'millis':
