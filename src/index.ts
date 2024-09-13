@@ -38,13 +38,10 @@ export default {
         else if (typeof value === 'number') {
           options.format = 'millis'
         }
-        else {
-          options.format = template?.format || luxonOptions.input.format
-        }
       }
 
-      options.zone = options.zone || template?.zone || luxonOptions.input.zone
-      return { value, ...options } as ParseOptions
+      const opts = defu(template, options, luxonOptions.input)
+      return { value, ...opts } as ParseOptions
     }
 
     function extendOutput(format?: FormatOutputOptions): OutputOptions {
@@ -59,8 +56,8 @@ export default {
         template = luxonOptions.templates[base.format as keyof typeof luxonOptions.templates] as Partial<OutputOptions>
       }
 
-      const m = defu(template, base, luxonOptions.output)
-      return m as OutputOptions
+      const opts = defu(template, base, luxonOptions.output)
+      return opts as OutputOptions
     }
 
     function luxonParse(value: ParseInput, format?: FormatInputOptions) {
