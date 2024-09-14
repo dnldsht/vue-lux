@@ -15,7 +15,7 @@ export interface OutputOptions {
 
 }
 
-export interface LuxonOptions {
+export interface LuxOptions {
   templates?: Record<string, OutputOptions>
   input?: InputOptions
   output?: OutputOptions

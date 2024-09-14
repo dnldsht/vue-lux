@@ -1,4 +1,4 @@
-import type { LuxonOptions } from './types'
+import type { LuxOptions } from './types'
 import { DateTime } from 'luxon'
 
 const templates = {
@@ -22,7 +22,7 @@ const templates = {
   times: { format: DateTime.TIME_WITH_SECONDS },
 }
 
-export const DEFAULT_OPTIONS: LuxonOptions = {
+export const DEFAULT_OPTIONS: LuxOptions = {
   input: {
     zone: 'utc',
     format: 'iso',

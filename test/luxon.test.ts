@@ -1,10 +1,10 @@
-import type { LuxonOptions } from '../src/types'
+import type { LuxOptions } from '../src/types'
 import { DateTime } from 'luxon'
 import { describe, expect, it } from 'vitest'
 import { createApp } from 'vue'
 import plugin from '../src/index'
 
-function initApp(options: LuxonOptions = {}) {
+function initApp(options: LuxOptions = {}) {
   const app = createApp({})
   app.use(plugin, options)
   return app
