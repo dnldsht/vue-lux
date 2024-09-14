@@ -30,8 +30,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/*",
-    "dist/nuxt/*"
+    "dist/*"
   ],
   "scripts": {
     "build": "unbuild",
