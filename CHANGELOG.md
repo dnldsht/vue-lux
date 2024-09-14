@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.2.1
+
+[compare changes](https://github.com/dnldsht/vue-lux/compare/v1.2.0...v1.2.1)
+
+### 📦 Build
+
+- Package ([88f6a29](https://github.com/dnldsht/vue-lux/commit/88f6a29))
+
+### ❤️ Contributors
+
+- Donald Shtjefni ([@dnldsht](http://github.com/dnldsht))
+
 ## v1.2.0
 
 [compare changes](https://github.com/dnldsht/vue-lux/compare/v1.1.0...v1.2.0)
