@@ -1,4 +1,4 @@
-import type { DateTimeFormatOptions, ToISOTimeOptions, ToRelativeOptions, ToSQLOptions, Zone } from 'luxon'
+import type { DateTime, DateTimeFormatOptions, ToISOTimeOptions, ToRelativeOptions, ToSQLOptions, Zone } from 'luxon'
 
 export interface InputOptions {
   zone?: string | Zone
@@ -19,4 +19,42 @@ export interface LuxOptions {
   templates?: Record<string, OutputOptions>
   input?: InputOptions
   output?: OutputOptions
+}
+
+type ParseInput = string | number | Date
+type FormatInputOptions = string | Partial<InputOptions>
+type FormatOutputOptions = string | Partial<OutputOptions>
+
+declare module '@nuxt/schema' {
+  interface NuxtConfig {
+    ['lux']?: LuxOptions
+  }
+  interface NuxtOptions {
+    ['lux']?: LuxOptions
+  }
+}
+
+declare module 'nuxt/schema' {
+  interface NuxtConfig {
+    ['lux']?: LuxOptions
+  }
+  interface NuxtOptions {
+    ['lux']?: LuxOptions
+  }
+}
+
+declare module '#app' {
+  interface NuxtApp {
+    $luxon: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
+    $lp: (value: ParseInput, format?: FormatInputOptions) => DateTime
+    $lf: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
+  }
+}
+
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $luxon: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
+    $lp: (value: ParseInput, format?: FormatInputOptions) => DateTime
+    $lf: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
+  }
 }

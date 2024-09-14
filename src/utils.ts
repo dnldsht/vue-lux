@@ -1,14 +1,8 @@
-import type { App } from 'vue'
-
 import type { ParseOptions } from './parse'
-import type { InputOptions, LuxOptions, OutputOptions } from './types'
+import type { FormatInputOptions, FormatOutputOptions, InputOptions, LuxOptions, OutputOptions, ParseInput } from './types'
 import { defu } from 'defu'
 import formatDateTime from './format'
 import parseInput from './parse'
-
-type ParseInput = string | number | Date
-type FormatInputOptions = string | Partial<InputOptions>
-type FormatOutputOptions = string | Partial<OutputOptions>
 
 function extendInput(luxOptions: Required<LuxOptions>, value: ParseInput, format?: FormatInputOptions): ParseOptions {
   let options = typeof format === 'string' ? { format } : format
