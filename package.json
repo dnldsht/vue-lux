@@ -34,7 +34,8 @@
     "build": "unbuild",
     "test": "vitest",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "release": "yarn lint && yarn test run && yarn build"
   },
   "dependencies": {
     "defu": "^6.1.2",
