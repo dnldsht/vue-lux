@@ -3,7 +3,7 @@ import type { App } from 'vue'
 import type { ParseOptions } from './parse'
 import type { InputOptions, LuxonOptions, OutputOptions } from './types'
 import { defu } from 'defu'
-import { DEFAULT_SETTINGS } from './constants'
+import { DEFAULT_OPTIONS } from './config'
 import formatDt from './format'
 import parse from './parse'
 
@@ -13,7 +13,7 @@ type FormatOutputOptions = string | Partial<OutputOptions>
 
 export default {
   install: (app: App, options: LuxonOptions = {}) => {
-    const luxonOptions = defu(options, DEFAULT_SETTINGS) as Required<LuxonOptions>
+    const luxonOptions = defu(options, DEFAULT_OPTIONS) as Required<LuxonOptions>
 
     function extendInput(value: ParseInput, format?: FormatInputOptions): ParseOptions {
       let options = typeof format === 'string' ? { format } : format

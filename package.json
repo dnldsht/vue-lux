@@ -1,12 +1,12 @@
 {
-  "name": "v-luxon",
+  "name": "vue-lux",
   "type": "module",
   "version": "1.0.0",
   "private": false,
   "description": "Easy DateTime formatting & parsing in Vue using Luxon",
   "author": "Donald Shtjefni <dnld.sht@gmail.com>",
   "license": "MIT",
-  "repository": "git@github.com:dnldsht/v-luxon.git",
+  "repository": "git@github.com:dnldsht/vue-lux.git",
   "keywords": [
     "vue",
     "vuejs",

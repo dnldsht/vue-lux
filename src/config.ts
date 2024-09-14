@@ -1,7 +1,7 @@
 import type { LuxonOptions } from './types'
 import { DateTime } from 'luxon'
 
-const localeFormats = {
+const templates = {
   full: { format: DateTime.DATETIME_FULL },
   fulls: { format: DateTime.DATETIME_FULL_WITH_SECONDS },
   huge: { format: DateTime.DATETIME_HUGE },
@@ -22,7 +22,7 @@ const localeFormats = {
   times: { format: DateTime.TIME_WITH_SECONDS },
 }
 
-export const DEFAULT_SETTINGS: LuxonOptions = {
+export const DEFAULT_OPTIONS: LuxonOptions = {
   input: {
     zone: 'utc',
     format: 'iso',
@@ -30,19 +30,5 @@ export const DEFAULT_SETTINGS: LuxonOptions = {
   output: {
     format: 'short',
   },
-  templates: {
-    server: {
-      zone: 'utc',
-      format: 'iso',
-    },
-    client: {
-      zone: 'local',
-      format: 'med',
-    },
-    inputdate: {
-      zone: 'client',
-      format: 'yyyy-MM-dd',
-    },
-    ...localeFormats,
-  },
+  templates,
 } as const
