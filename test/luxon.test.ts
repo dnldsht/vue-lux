@@ -14,7 +14,7 @@ describe('plugin', () => {
   it('should install the plugin', () => {
     const app = initApp()
 
-    expect(app.config.globalProperties.$luxon).toBeDefined()
+    expect(app.config.globalProperties.$lux).toBeDefined()
     expect(app.config.globalProperties.$lp).toBeDefined()
     expect(app.config.globalProperties.$lf).toBeDefined()
   })
@@ -28,7 +28,7 @@ describe('datetimes', () => {
       },
     })
 
-    const $luxon = app.config.globalProperties.$luxon
+    const $lux = app.config.globalProperties.$lux
     const date = '2024-07-12T12:23:49.000Z'
     const outputs = [
       { format: undefined, expected: '7/12/2024, 12:23 PM' },
@@ -61,12 +61,12 @@ describe('datetimes', () => {
     ]
 
     for (const { format, expected } of outputs) {
-      expect($luxon(date, format), format).toBe(expected)
+      expect($lux(date, format), format).toBe(expected)
     }
 
-    expect($luxon(date, 'jsdate').getTime()).toBe(new Date(1720787029 * 1000).getTime())
-    expect($luxon(date, 'relative')).toMatch('ago')
-    expect(() => $luxon(date, { format: 1 })).toThrowError(TypeError)
+    expect($lux(date, 'jsdate').getTime()).toBe(new Date(1720787029 * 1000).getTime())
+    expect($lux(date, 'relative')).toMatch('ago')
+    expect(() => $lux(date, { format: 1 })).toThrowError(TypeError)
   })
 
   it('format with locale', () => {
@@ -77,7 +77,7 @@ describe('datetimes', () => {
       },
     })
 
-    const $luxon = app.config.globalProperties.$luxon
+    const $lux = app.config.globalProperties.$lux
     const date = '2024-07-12T12:23:49.000Z'
     const outputs = [
       { format: 'full', expected: '12 luglio 2024 alle ore 12:23 UTC' },
@@ -104,7 +104,7 @@ describe('datetimes', () => {
     ]
 
     for (const { format, expected } of outputs) {
-      expect($luxon(date, format), format).toBe(expected)
+      expect($lux(date, format), format).toBe(expected)
     }
   })
 
@@ -115,7 +115,7 @@ describe('datetimes', () => {
       },
     })
 
-    const $luxon = app.config.globalProperties.$luxon
+    const $lux = app.config.globalProperties.$lux
     const date = '2024-07-12T12:23:49.000Z'
     const outputs = [
       { format: undefined, expected: '7/12/2024, 8:23 AM' },
@@ -135,14 +135,14 @@ describe('datetimes', () => {
     ]
 
     for (const { format, expected } of outputs) {
-      expect($luxon(date, format), format).toMatch(expected)
+      expect($lux(date, format), format).toMatch(expected)
     }
 
     const dateIn = '2024-07-12T12:23:49'
     const zoneIn = 'Asia/Tokyo'
     const zoneOut = 'Europe/Rome'
 
-    expect($luxon(dateIn, { format: 'huges', zone: zoneOut }, { zone: zoneIn })).toMatch('Friday, July 12, 2024 at 5:23:49 AM Central European Summer Time')
+    expect($lux(dateIn, { format: 'huges', zone: zoneOut }, { zone: zoneIn })).toMatch('Friday, July 12, 2024 at 5:23:49 AM Central European Summer Time')
   })
 
   it('format with templates', () => {
@@ -152,12 +152,12 @@ describe('datetimes', () => {
       },
     })
 
-    const $luxon = app.config.globalProperties.$luxon
+    const $lux = app.config.globalProperties.$lux
     const date = '2024-07-12T12:23:49.000Z'
     const outputs = [{ format: 'date', expected: '12/07/2024' }]
 
     for (const { format, expected } of outputs) {
-      expect($luxon(date, format)).toBe(expected)
+      expect($lux(date, format)).toBe(expected)
     }
   })
 })
@@ -218,7 +218,7 @@ describe('dates', () => {
       },
     })
 
-    const $luxon = app.config.globalProperties.$luxon
+    const $lux = app.config.globalProperties.$lux
     const date = '2024-07-12'
     const outputs = [
       { format: 'date_short', expected: '12/07/2024' },
@@ -226,7 +226,7 @@ describe('dates', () => {
     ]
 
     for (const { format, expected } of outputs) {
-      expect($luxon(date, format)).toBe(expected)
+      expect($lux(date, format)).toBe(expected)
     }
   })
 })
@@ -240,9 +240,9 @@ describe('times', () => {
       },
     })
 
-    const $luxon = app.config.globalProperties.$luxon
+    const $lux = app.config.globalProperties.$lux
     const date = '16:20:00'
-    const today = $luxon(new Date(), 'date_short')
+    const today = $lux(new Date(), 'date_short')
 
     const outputs = [
       { format: 'time', expected: '16:20' },
@@ -250,7 +250,7 @@ describe('times', () => {
     ]
 
     for (const { format, expected } of outputs) {
-      expect($luxon(date, format)).toBe(expected)
+      expect($lux(date, format)).toBe(expected)
     }
   })
 })

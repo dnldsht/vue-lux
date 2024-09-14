@@ -11,6 +11,6 @@ export default {
 
     app.config.globalProperties.$lp = luxParse(luxOptions)
     app.config.globalProperties.$lf = luxFormat(luxOptions)
-    app.config.globalProperties.$luxon = luxFormat(luxOptions)
+    app.config.globalProperties.$lux = luxFormat(luxOptions)
   },
 }

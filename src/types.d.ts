@@ -45,7 +45,7 @@ declare module 'nuxt/schema' {
 
 declare module '#app' {
   interface NuxtApp {
-    $luxon: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
+    $lux: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
     $lp: (value: ParseInput, format?: FormatInputOptions) => DateTime
     $lf: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
   }
@@ -53,7 +53,7 @@ declare module '#app' {
 
 declare module 'vue' {
   interface ComponentCustomProperties {
-    $luxon: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
+    $lux: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
     $lp: (value: ParseInput, format?: FormatInputOptions) => DateTime
     $lf: (value: ParseInput, format?: FormatOutputOptions, inputFormat?: FormatInputOptions) => string | number | Date | null
   }
