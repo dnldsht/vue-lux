@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/dnldsht/vue-lux/compare/v1.1.0...v1.2.0)
+
+### 🚀 Enhancements
+
+- Nuxt support ([8e3d1d7](https://github.com/dnldsht/vue-lux/commit/8e3d1d7))
+
+### 💅 Refactors
+
+- Clean ([997be1d](https://github.com/dnldsht/vue-lux/commit/997be1d))
+- $luxon -> $lux ([c4225ef](https://github.com/dnldsht/vue-lux/commit/c4225ef))
+
+### 🏡 Chore
+
+- Create LICENSE ([a2178e4](https://github.com/dnldsht/vue-lux/commit/a2178e4))
+- Deps ([10616c8](https://github.com/dnldsht/vue-lux/commit/10616c8))
+
+### ❤️ Contributors
+
+- Donald Shtjefni ([@dnldsht](http://github.com/dnldsht))
+
 ## v1.1.0
 
 

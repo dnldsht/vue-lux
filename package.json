@@ -1,7 +1,7 @@
 {
   "name": "vue-lux",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": false,
   "description": "Easy DateTime formatting & parsing in Vue using Luxon",
   "author": "Donald Shtjefni <dnld.sht@gmail.com>",
