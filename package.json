@@ -35,7 +35,7 @@
     "test": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "yarn lint && yarn test run && yarn build"
+    "release": "yarn lint && yarn test run && yarn build && npx changelogen@latest --release --push"
   },
   "dependencies": {
     "defu": "^6.1.2",
