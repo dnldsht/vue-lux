@@ -3,6 +3,7 @@
   "type": "module",
   "version": "1.2.1",
   "private": false,
+  "packageManager": "pnpm@9.10.0",
   "description": "Easy DateTime formatting & parsing in Vue using Luxon",
   "author": "Donald Shtjefni <dnld.sht@gmail.com>",
   "license": "MIT",
