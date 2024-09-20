@@ -12,7 +12,6 @@ export interface OutputOptions {
   relative?: ToRelativeOptions
   sql?: ToSQLOptions
   iso?: ToISOTimeOptions
-
 }
 
 export interface LuxOptions {
@@ -21,7 +20,7 @@ export interface LuxOptions {
   output?: OutputOptions
 }
 
-type ParseInput = string | number | Date
+type ParseInput = string | number | Date | DateTime
 type FormatInputOptions = string | Partial<InputOptions>
 type FormatOutputOptions = string | Partial<OutputOptions>
 
