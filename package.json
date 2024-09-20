@@ -35,7 +35,7 @@
   "scripts": {
     "build": "unbuild",
     "test": "vitest",
-    "coverage": "vitest run --coverage",
+    "coverage": "vitest run --coverage --reporter=json",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "yarn lint && yarn test run && yarn build && npx changelogen@latest --release --push"
