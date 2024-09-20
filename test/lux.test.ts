@@ -170,14 +170,19 @@ describe('parse', () => {
       },
     })
     const $lp = app.config.globalProperties.$lp
-    console.log($lp(new Date(2024, 6, 12)))
     const date = '2024-07-12'
+
     expect($lp('12/07/2024', 'dd/MM/yyyy').toISODate()).toBe(date)
     expect($lp('12/07/2024', { format: 'dd/MM/yyyy' }).toISODate()).toBe(date)
     expect($lp('12-07--2024', { format: 'my_template' }).toISODate()).toBe(date)
-    expect($lp(new Date(2024, 6, 12)).toISODate()).toBe(date)
+
     expect($lp(1720742400 * 1000).toISODate()).toBe(date)
-    expect($lp(DateTime.fromObject({ year: 2024, month: 7, day: 12, hour: 17 })).toISODate()).toBe(date)
+    expect($lp(DateTime.fromObject({ year: 2024, month: 7, day: 12 }, { zone: 'utc' })).toISODate()).toBe(date)
+
+    const jsDate = new Date()
+    jsDate.setUTCFullYear(2024, 6, 12)
+    jsDate.setUTCHours(0, 0, 0, 0)
+    expect($lp(jsDate).toISODate()).toBe(date)
 
     const formats = [
       { format: 'iso', value: '2024-07-12' },
@@ -187,7 +192,7 @@ describe('parse', () => {
       { format: 'millis', value: 1720787029000 },
       { format: 'unix', value: 1720787029 },
       { format: 'seconds', value: 1720787029 },
-      { format: 'luxon', value: DateTime.fromObject({ year: 2024, month: 7, day: 13 }) },
+      { format: 'luxon', value: DateTime.fromObject({ year: 2024, month: 7, day: 12 }, { zone: 'utc' }) },
     ]
 
     expect(() => $lp('2024-07-12', { format: 'jsdate' })).toThrowError(TypeError)
