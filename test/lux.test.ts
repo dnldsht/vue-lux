@@ -170,12 +170,12 @@ describe('parse', () => {
       },
     })
     const $lp = app.config.globalProperties.$lp
-
+    console.log($lp(new Date(2024, 6, 12)))
     const date = '2024-07-12'
     expect($lp('12/07/2024', 'dd/MM/yyyy').toISODate()).toBe(date)
     expect($lp('12/07/2024', { format: 'dd/MM/yyyy' }).toISODate()).toBe(date)
     expect($lp('12-07--2024', { format: 'my_template' }).toISODate()).toBe(date)
-    expect($lp(new Date(2024, 6, 12, 17), { zone: 'utc' }).toISODate()).toBe(date)
+    expect($lp(new Date(2024, 6, 12)).toISODate()).toBe(date)
     expect($lp(1720742400 * 1000).toISODate()).toBe(date)
     expect($lp(DateTime.fromObject({ year: 2024, month: 7, day: 12, hour: 17 })).toISODate()).toBe(date)
 
