@@ -93,7 +93,7 @@ this.$lp('2020-10-05 22:36', 'yyyy-MM-dd HH:mm')
 
 You can define the default input and output settings in the plugin options.
 
-```js
+```
 {
   input: {
     zone: 'utc',
