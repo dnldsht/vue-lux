@@ -1,4 +1,6 @@
 # vue-lux
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
 
 `vue-lux` is a Vue 3 library that simplifies DateTime formatting and parsing using the powerful Luxon library. Inspired by [vue-luxon](https://github.com/casbloem/vue-luxon).
 
@@ -308,3 +310,14 @@ You can use the following tokens:
 | qq               |              | quarter, padded to 2                                         | 13                                                          |
 
 Full list of tokens can be found [here](https://moment.github.io/luxon/#/formatting?id=table-of-tokens)
+
+## License
+
+[MIT](./LICENSE) License © 2024-PRESENT [Donald Shtjefni](https://donld.me)
+
+<!-- Badges -->
+
+[npm-version-src]: https://img.shields.io/npm/v/vue-lux?style=flat&colorA=080f12&colorB=1fa669
+[npm-version-href]: https://npmjs.com/package/vue-lux
+[npm-downloads-src]: https://img.shields.io/npm/dm/vue-lux?style=flat&colorA=080f12&colorB=1fa669
+[npm-downloads-href]: https://npmjs.com/package/vue-lux
