@@ -2,6 +2,7 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![bundle][bundle-src]][bundle-href]
+[![Codecov][codecov-src]][codecov-href]
 
 `vue-lux` is a Vue 3 library that simplifies DateTime formatting and parsing using the powerful Luxon library. Inspired by [vue-luxon](https://github.com/casbloem/vue-luxon).
 
@@ -15,7 +16,7 @@ npm i vue-lux
 
 ### Vue
 
-```javascript
+```ts
 import { createApp } from 'vue'
 import VueLuxon from 'vue-lux'
 import App from './App.vue'
@@ -32,7 +33,7 @@ app.mount('#app')
 ```
 
 ### Nuxt
-```javascript
+```ts
 export default defineNuxtConfig({
   modules: ['vue-lux/nuxt'],
   lux: {
@@ -92,7 +93,6 @@ this.$lp('2020-10-05 22:36', 'yyyy-MM-dd HH:mm')
 ## Settings
 
 You can define the default input and output settings in the plugin options.
-
 ```
 {
   input: {
@@ -324,3 +324,5 @@ Full list of tokens can be found [here](https://moment.github.io/luxon/#/formatt
 [npm-downloads-href]: https://npmjs.com/package/vue-lux
 [bundle-src]: https://img.shields.io/bundlephobia/minzip/vue-lux?style=flat&colorA=080f12&colorB=1fa669
 [bundle-href]: https://bundlephobia.com/result?p=vue-lux
+[codecov-src]: https://img.shields.io/codecov/c/gh/dnldsht/vue-lux/main?style=flat&colorA=080f12&colorB=1fa669
+[codecov-href]: https://codecov.io/gh/dnldsht/vue-lux
