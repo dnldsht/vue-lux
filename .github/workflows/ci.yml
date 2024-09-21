@@ -26,5 +26,5 @@ jobs:
       - run: pnpm build
       - run: pnpm vitest --coverage
       - uses: codecov/codecov-action@v4
-        env:
+        with:
           token: ${{ secrets.CODECOV_TOKEN }}
